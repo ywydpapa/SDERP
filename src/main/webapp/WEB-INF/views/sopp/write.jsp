@@ -267,7 +267,6 @@
 		<!-- Row end -->
 	</div>
 		<!--영업기회등록-->
-	<script type="text/javascript" src="${path}/js/image.js"></script>
 	<script>
 	function test(){
 		if($('#cntrctMth').val() == '10248'){
@@ -416,7 +415,7 @@
 		$("#endCustModal").modal("hide");
 	}
 
-	async function fn_soppInsert() {
+	function fn_soppInsert() {
 		var soppData = {};
 		soppData.soppTitle 		= $("#soppTitle").val();
 		if($("#userName").val() != "")  	soppData.userNo = Number($("#userNo").val());
@@ -429,12 +428,7 @@
 		if($("#soppStatus").val() != "") soppData.soppStatus = $("#soppStatus").val();
 		if($("#soppTargetDate").val() != "") soppData.soppTargetDate = $("#soppTargetDate").val();
 		if($("#soppTargetAmt").val() != "") soppData.soppTargetAmt = $("#soppTargetAmt").val().replace(/[\D\s\._\-]+/g, "");
-		
-		var content = tinyMCE.get("soppDesc").getContent();
-		if(content != ""){
-			soppData.soppDesc = await uploadImage(content, "${path}");
-		} 
-		
+		if(tinyMCE.get("soppDesc").getContent() != "") soppData.soppDesc = tinyMCE.get("soppDesc").getContent();
 		if($("#maintenanceTarget").val() !== "") soppData.maintenanceTarget = $("#maintenanceTarget").val();
 		if($("#secondUserName").val() !== "") soppData.secondUserNo = $("#secondUserNo").val();
 		if(saved.categories.length > 0) soppData.categories = saved.categories.toString();

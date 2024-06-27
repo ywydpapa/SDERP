@@ -807,7 +807,6 @@ ${dto.soppDesc}</textarea
       <!-- Row end -->
     </div>
     <!--영업기회등록-->
-    <script type="text/javascript" src="${path}/js/image.js"></script>
     <script>
       $("#custModal").on("show.bs.modal", function (e) {
         var button = $(e.relatedTarget);
@@ -877,7 +876,7 @@ ${dto.soppDesc}</textarea
         $("#contModal").modal("hide");
       }
 
-      async function fn_soppInsert() {
+      function fn_soppInsert() {
         var soppData = {};
         soppData.soppTitle = $("#soppTitle").val();
         soppData.userNo = $("#userNo").val();
@@ -888,16 +887,10 @@ ${dto.soppDesc}</textarea
         soppData.soppSource = $("#soppSource").val();
         soppData.soppTargetDate = $("#soppTargetDate").val();
         soppData.soppType = $("#soppType").val();
-        soppData.soppTargetAmt = $("#soppTargetAmt").val().replace(/[\D\s\._\-]+/g, "");
-
-        var content = tinyMCE.get("soppDesc").getContent();
-        if(content != ""){
-          soppData.soppDesc = await uploadImage(content, "${path}");
-        } else {
-          soppData.soppDesc = "";
-        }
-
-
+        soppData.soppTargetAmt = $("#soppTargetAmt")
+          .val()
+          .replace(/[\D\s\._\-]+/g, "");
+        soppData.soppDesc = $("#soppDesc").val();
         if (!soppData.soppTitle) {
           alert("영업기회 제목을 입력하십시오.!!");
           return;
