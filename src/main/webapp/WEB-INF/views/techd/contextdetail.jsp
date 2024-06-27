@@ -545,9 +545,8 @@
 				<div class="btn_wr text-right mt-3" id="tab_common_bottom">
 					<button class="btn btn-md btn-success f-left" onClick="javascript:location='${path}/techd/contlist.do'">유지보수 갱신대상 계약목록</button>
 				</div>
-	<!--계약등록-->
+	<!--//계약등록-->
 
-	<script type="text/javascript" src="${path}/js/image.js"></script>
 	<script>
 		$("#tablist > li:nth-child(1)").click(function (){
 			$("#tab01_bottom").show();
@@ -757,7 +756,7 @@
 			modal.find('.modal-body').load(button.data("remote"));
 		});
 
-		async function fn_SaveCont() {
+		function fn_SaveCont() {
 			var contData = {};
 			contData.contNo 					= Number($("#contNo").val());
 			var contractType					= $("input[name='contractType']:checked").val();	// 신규 영업지원 or 기존계약
@@ -799,11 +798,7 @@
 			if($("#vatYn").val() != "")			contData.vatYn				= $("#vatYn").val();				// VAT 포함여부 (기본값 : Y)
 			if($("#contArea").val() != "") 		contData.contArea 			= $("#contArea").val();				// 지역
 			if($("#contType").val() != "")		contData.contType 			= $("#contType").val();				// 판매방식
-
-			var content = tinyMCE.get("contDesc").getContent();
-			if(content != ""){
-				contData.contDesc = await uploadImage(content, "${path}");		// 계약내용
-			} 
+			if(tinyMCE.get("contDesc").getContent() != "")		contData.contDesc			= tinyMCE.get("contDesc").getContent();				// 계약내용
 
 			if (!contData.contTitle) {
 				alert("계약명 제목을 입력하십시오.");
@@ -857,7 +852,7 @@
 			});
 		}
 
-		async function fn_ExtendCont() {
+		function fn_ExtendCont() {
 			var contData = {};
 			contData.contNo 					= Number($("#contNo").val());
 			var contractType					= $("input[name='contractType']:checked").val();	// 신규 영업지원 or 기존계약
@@ -899,11 +894,7 @@
 			if($("#vatYn").val() != "")			contData.vatYn				= $("#vatYn").val();				// VAT 포함여부 (기본값 : Y)
 			if($("#contArea").val() != "") 		contData.contArea 			= $("#contArea").val();				// 지역
 			if($("#contType").val() != "")		contData.contType 			= $("#contType").val();				// 판매방식
-
-			var content = tinyMCE.get("contDesc").getContent();
-			if(content != ""){
-				contData.contDesc = await uploadImage(content, "${path}");		// 계약내용
-			} 
+			if(tinyMCE.get("contDesc").getContent() != "")		contData.contDesc			= tinyMCE.get("contDesc").getContent();				// 계약내용
 
 			if (!contData.contTitle) {
 				alert("계약명 제목을 입력하십시오.");

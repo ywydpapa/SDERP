@@ -353,8 +353,7 @@ tr.shown td.details-control {
 			</div>
 		</div>
 	</div>
-	
-    <script type="text/javascript" src="${path}/js/image.js"></script>
+
 	<script>
 		// 이벤트 영역 시작
 		$('#custModal').on('show.bs.modal', function(e) {
@@ -482,7 +481,7 @@ tr.shown td.details-control {
 
 		////////////// store insert 함수 
 
-		async function fn_storeInsert() {
+		function fn_storeInsert() {
 			if ($("#productNo").val() == "") {
 				alert("상품을 선택하세요");
 			} else if ($("#storeQty").val() == 0) {
@@ -501,12 +500,7 @@ tr.shown td.details-control {
 				storeData.storeQty = $("#storeQty").val() * 1;
 				storeData.storeAmount = $("#storeAmount").val().replaceAll(",","") * 1;
 				storeData.locationNo = $("#storeLoc2").val();
-
-				var content = tinyMCE.get("comment").getContent();
-				if(content != ""){
-					storeData.comment = await uploadImage(content, "${path}");
-				} 
-
+				storeData.comment = tinymce.get("comment").getContent();
 				storeData.storeUnit = $("#storeUnit").val() * 1;
 
 				$.ajax({

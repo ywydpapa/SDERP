@@ -363,7 +363,6 @@
 		<!-- Row end -->
 	</div>
 	<!--영업기회등록-->
-	<script type="text/javascript" src="${path}/js/image.js"></script>
 	<script>
 		function categorySet(){
 			let html = "";
@@ -605,7 +604,7 @@
 			$("#endCustModal").modal("hide");
 		}
 		
-		async function fn_soppUpdate(){
+		function fn_soppUpdate(){
 			var soppData = {};
 			var soppStatus = "${dto.soppStatus}";
 			
@@ -644,12 +643,7 @@
 			if($("#soppSource").val() != "") soppData.soppSource 	= $("#soppSource").val();
 			if($("#soppTargetDate").val() != "") soppData.soppTargetDate	= $("#soppTargetDate").val();
 			if($("#soppTargetAmt").val() != "") soppData.soppTargetAmt 	= $("#soppTargetAmt").val().replace(/[\D\s\._\-]+/g, "");
-			
-			var content = tinyMCE.get("soppDesc").getContent();
-			if(content != ""){
-				soppData.soppDesc = await uploadImage(content, "${path}");
-			} 
-			
+			if(tinyMCE.get("soppDesc").getContent() != "") soppData.soppDesc 		= tinyMCE.get("soppDesc").getContent();
 			if($("#maintenanceTarget").val() != "") soppData.maintenanceTarget = $("#maintenanceTarget").val();
 			if(saved.categories.length > 0) soppData.categories = saved.categories.toString();
 

@@ -501,7 +501,6 @@
 	</div>
 	<!-- Bootstrap tab card end -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script type="text/javascript" src="${path}/js/image.js"></script>
 	<script>
 
 	function fn_Reloaddata01(url, data){
@@ -573,7 +572,7 @@
 					});
 			}
 
-		async function fn_custUpdate02(){
+		function fn_custUpdate02(){
 			var custData2 = {};
 			custData2.custNo 		= $("#custNo").val();
 			custData2.custPostno 	= $("#custPostno").val();
@@ -582,13 +581,13 @@
 			custData2.custTel 		= $("#custTel").val();
 			custData2.custFax 		= $("#custFax").val();
 			
-
-			var content = tinyMCE.get("custMemo").getContent();
 			if($("textarea[id='custMemo']").attr("style") === "display: none;"){
-				custData2.custMemo = await uploadImage(content, "${path}");
+				custData2.custMemo 		= tinyMCE.get("custMemo").getContent();
 			}else{
-				custData2.custMemo = $("#custMemo").val();
+				custData2.custMemo 		= $("#custMemo").val();
 			}
+			
+
 			$.ajax({ url: "${path}/cust/insert02.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소
 						data: custData2 , // HTTP 요청과 함께 서버로 보낼 데이터
 						method: "POST", // HTTP 요청 메소드(GET, POST 등)
@@ -635,7 +634,7 @@
 					});
 			}
 
-		async function fn_custUpdate04(){
+		function fn_custUpdate04(){
 			var compNo = "${sessionScope.compNo}";
 			var custData4 = {};
 			custData4.custNo 		= $("#custNo").val();
@@ -649,11 +648,11 @@
 			custData4.custVatbiz	= $("#custVatbiz").val();
 			
 			if($("#custVatmemo").attr("style") === "display: none;"){
-				var content = tinyMCE.get("custVatmemo").getContent();
-				custData4.custVatmemo = await uploadImage(content, "${path}");
-			} else {
-				custData4.custVatmemo = $("#custVatmemo").val();
+				custData4.custVatmemo 	= tinyMCE.get("custVatmemo").getContent();
+			}else{
+				custData4.custVatmemo 	= $("#custVatmemo").val();
 			}
+
 			$.ajax({ url: "${path}/cust/insert04.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소
 						data: custData4 , // HTTP 요청과 함께 서버로 보낼 데이터
 						method: "POST", // HTTP 요청 메소드(GET, POST 등)
