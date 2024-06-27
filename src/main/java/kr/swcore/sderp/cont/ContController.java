@@ -17,10 +17,8 @@ import kr.swcore.sderp.sopp.dto.SoppDTO;
 import kr.swcore.sderp.sopp.dto.SoppdataDTO;
 import kr.swcore.sderp.sopp.service.SoppService;
 import kr.swcore.sderp.sopp.service.SoppdataService;
-import kr.swcore.sderp.techd.dto.TechdDTO;
 import kr.swcore.sderp.techd.service.TechdService;
 import kr.swcore.sderp.user.service.UserService;
-import kr.swcore.sderp.util.service.UtilService;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -74,9 +72,6 @@ public class ContController {
 
 	@Inject
 	ProductService productService;
-
-	@Inject
-	UtilService utilService;
 
 	@RequestMapping("list.do")
 	public ModelAndView list(HttpSession session, ModelAndView mav,
@@ -165,19 +160,6 @@ public class ContController {
 		contDTO = contService.detailCont(contNo);
 		contDTO.setSoppNo(soppNo);
 		contDTO.setContNo(contNo);
-
-		String contDesc = contDTO.getContDesc();
-
-		List<String> uuids = utilService.extractUuidsFromHtml(contDesc);
-
-		for (String uuid : uuids) {
-			String base64 = utilService.getBase64FromServer(uuid);
-			if (contDesc != null) {
-				contDesc = contDesc.replace(uuid, "data:image/png;base64," + base64);
-			}
-		}
-		contDTO.setContDesc(contDesc);
-
 		mav.addObject("contDto", contDTO);
 		mav.addObject("dto", soppService.detailSopp(soppNo));
 		mav.addObject("dtoContdata01", soppdataService.listSoppdata01Cont(contDTO));
