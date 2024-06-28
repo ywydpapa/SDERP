@@ -3,7 +3,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="fmt"
 uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <head>
-  <title>BizCore 2024.03.05</title>
+  <title>BizCore</title>
   <meta name="format-detection" content="telephone=no" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -136,7 +136,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
   <script type="text/javascript" src="${path}/js/print.min.js"></script>
   --%>
   <script
-    src="https://cdn.tiny.cloud/1/kh4eirod6bgv8u2sxlaeikxy5hxfogh0edhzloljxh6zf046/tinymce/6/tinymce.min.js"
+    src="https://cdn.tiny.cloud/1/68ez894huojrzt0o014hupihog391h25iz4sognm48xzzxeo/tinymce/6/tinymce.min.js"
     referrerpolicy="origin"
   ></script>
   <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
